@@ -5,12 +5,16 @@
 :root {
   --brand-orange: #ea580c;
   --brand-orange-light: #f97316;
-  --brand-navy: #050d1f;
-  --brand-navy-card: #0d1b2e;
-  --brand-navy-input: #0a1628;
-  --brand-navy-border: #1e3a5f;
-  --brand-blue: #3b82f6;
-  --brand-blue-hover: #2563eb;
+  --brand-orange-pale: #fff4ee;
+  --brand-orange-border: #fbd5c0;
+  --bg: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #f9fafb;
+  --border: #e5e7eb;
+  --border-focus: #ea580c;
+  --text: #111827;
+  --text-muted: #6b7280;
+  --text-light: #9ca3af;
 }
 
 * {
@@ -19,179 +23,150 @@
   padding: 0;
 }
 
-html,
-body {
+html, body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: var(--brand-navy);
-  color: white;
-  font-family: "Inter", system-ui, sans-serif;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: Inter, system-ui, sans-serif;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: var(--brand-navy);
-}
-::-webkit-scrollbar-thumb {
-  background: var(--brand-navy-border);
-  border-radius: 3px;
-}
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #f3f4f6; }
+::-webkit-scrollbar-thumb { background: var(--brand-orange-border); border-radius: 3px; }
 
-/* Input styles */
+/* ---- Inputs ---- */
 .quote-input {
-  @apply w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none transition-all duration-200;
-  background-color: var(--brand-navy-input);
-  border: 1.5px solid var(--brand-navy-border);
+  @apply w-full px-4 py-3 rounded-xl text-gray-800 placeholder-gray-400 outline-none transition-all duration-200 text-sm;
+  background-color: var(--bg-input);
+  border: 1.5px solid var(--border);
 }
-
 .quote-input:focus {
-  border-color: var(--brand-blue);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: var(--brand-orange);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(234,88,12,0.1);
 }
 
-/* Select styles */
+/* ---- Select ---- */
 .quote-select {
-  @apply w-full px-4 py-3 rounded-xl text-white outline-none transition-all duration-200 cursor-pointer;
-  background-color: var(--brand-navy-input);
-  border: 1.5px solid var(--brand-navy-border);
+  @apply w-full px-4 py-3 rounded-xl text-gray-800 outline-none transition-all duration-200 cursor-pointer text-sm;
+  background-color: var(--bg-input);
+  border: 1.5px solid var(--border);
   appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2394a3b8' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%236b7280' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 16px center;
   padding-right: 40px;
 }
-
 .quote-select:focus {
-  border-color: var(--brand-blue);
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+  border-color: var(--brand-orange);
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(234,88,12,0.1);
 }
+.quote-select option { background-color: #fff; color: #111827; }
 
-.quote-select option {
-  background-color: var(--brand-navy-card);
-}
-
-/* Primary button */
+/* ---- Buttons ---- */
 .btn-primary {
-  @apply w-full py-4 px-6 rounded-full font-semibold text-white text-base transition-all duration-200 flex items-center justify-center gap-2;
-  background-color: var(--brand-blue);
+  @apply w-full py-4 px-6 rounded-full font-semibold text-white text-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer;
+  background-color: var(--brand-orange);
 }
-
 .btn-primary:hover {
-  background-color: var(--brand-blue-hover);
+  background-color: var(--brand-orange-light);
   transform: translateY(-1px);
-  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 8px 25px rgba(234,88,12,0.3);
 }
+.btn-primary:active { transform: translateY(0); }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; box-shadow: none; }
 
-.btn-primary:active {
-  transform: translateY(0);
-}
-
-/* Secondary button */
 .btn-secondary {
-  @apply w-full py-4 px-6 rounded-full font-semibold text-slate-300 text-base transition-all duration-200 flex items-center justify-center gap-2;
+  @apply w-full py-4 px-6 rounded-full font-semibold text-sm transition-all duration-200 flex items-center justify-center gap-2 cursor-pointer;
   background-color: transparent;
-  border: 1.5px solid var(--brand-navy-border);
+  color: var(--text-muted);
+  border: 1.5px solid var(--border);
 }
-
 .btn-secondary:hover {
-  border-color: var(--brand-blue);
-  color: white;
+  border-color: var(--brand-orange);
+  color: var(--brand-orange);
 }
 
-/* Card container */
+/* ---- Cards ---- */
 .quote-card {
   @apply rounded-2xl p-5;
-  background-color: var(--brand-navy-card);
-  border: 1px solid var(--brand-navy-border);
+  background-color: var(--bg-card);
+  border: 1.5px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05);
 }
 
-/* Option card (clickable) */
+/* ---- Option card (clickable) ---- */
 .option-card {
   @apply flex items-start gap-4 p-4 rounded-xl cursor-pointer transition-all duration-150;
-  background-color: var(--brand-navy-input);
-  border: 1.5px solid var(--brand-navy-border);
+  background-color: #fff;
+  border: 1.5px solid var(--border);
 }
-
-.option-card:hover {
-  border-color: var(--brand-blue);
-}
-
+.option-card:hover { border-color: var(--brand-orange); background-color: var(--brand-orange-pale); }
 .option-card.selected {
-  border-color: var(--brand-blue);
-  background-color: rgba(59, 130, 246, 0.1);
+  border-color: var(--brand-orange);
+  background-color: var(--brand-orange-pale);
 }
 
-/* Pill selector (bedrooms, etc) */
+/* ---- Pill selector ---- */
 .pill-btn {
   @apply px-4 py-2 rounded-full font-medium text-sm transition-all duration-150 cursor-pointer;
-  background-color: var(--brand-navy-input);
-  border: 1.5px solid var(--brand-navy-border);
-  color: #94a3b8;
+  background-color: #f3f4f6;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
   min-width: 44px;
   text-align: center;
 }
-
-.pill-btn:hover {
-  border-color: var(--brand-blue);
-  color: white;
-}
-
+.pill-btn:hover { border-color: var(--brand-orange); color: var(--brand-orange); }
 .pill-btn.selected {
-  background-color: var(--brand-blue);
-  border-color: var(--brand-blue);
+  background-color: var(--brand-orange);
+  border-color: var(--brand-orange);
   color: white;
 }
 
-/* Counter button */
+/* ---- Counter button ---- */
 .counter-btn {
-  @apply w-9 h-9 rounded-lg flex items-center justify-center text-white font-bold text-lg transition-all duration-150 cursor-pointer;
-  background-color: var(--brand-navy-border);
+  @apply w-9 h-9 rounded-lg flex items-center justify-center font-bold text-lg transition-all duration-150 cursor-pointer select-none;
+  background-color: #f3f4f6;
+  border: 1.5px solid var(--border);
+  color: var(--text-muted);
 }
+.counter-btn:hover { background-color: var(--brand-orange); border-color: var(--brand-orange); color: white; }
+.counter-btn:disabled { opacity: 0.35; cursor: not-allowed; }
 
-.counter-btn:hover {
-  background-color: var(--brand-blue);
-}
-
-/* Step label */
+/* ---- Step label ---- */
 .step-label {
   @apply text-xs font-semibold tracking-widest uppercase;
-  color: var(--brand-blue);
+  color: var(--brand-orange);
 }
 
-/* Checkbox custom */
+/* ---- Checkbox ---- */
 .quote-checkbox {
-  @apply w-5 h-5 rounded cursor-pointer;
-  accent-color: var(--brand-blue);
+  @apply w-5 h-5 rounded cursor-pointer flex-shrink-0;
+  accent-color: var(--brand-orange);
 }
 
-/* Animation */
+/* ---- Animation ---- */
 @keyframes fadeSlideIn {
-  from {
-    opacity: 0;
-    transform: translateY(12px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+.animate-in { animation: fadeSlideIn 0.25s ease-out forwards; }
 
-.animate-in {
-  animation: fadeSlideIn 0.3s ease-out forwards;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
+/* ---- Spinner ---- */
+@keyframes spin { to { transform: rotate(360deg); } }
 .spinner {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255,255,255,0.3);
+  width: 16px; height: 16px;
+  border: 2px solid rgba(255,255,255,0.4);
   border-top-color: white;
   border-radius: 50%;
   animation: spin 0.6s linear infinite;
+}
+
+/* ---- Date input ---- */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: opacity(0.5);
+  cursor: pointer;
 }

@@ -9,12 +9,7 @@ interface EircodeInputProps {
   placeholder?: string;
 }
 
-export default function EircodeInput({
-  value,
-  onChange,
-  onLookup,
-  placeholder = "D02 Y033",
-}: EircodeInputProps) {
+export default function EircodeInput({ value, onChange, onLookup, placeholder = "D02 Y033" }: EircodeInputProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const debounceRef = useRef<NodeJS.Timeout | null>(null);
@@ -27,7 +22,6 @@ export default function EircodeInput({
 
       if (debounceRef.current) clearTimeout(debounceRef.current);
 
-      // Auto-lookup when eircode looks complete (7 chars without space, or 8 with)
       const cleaned = formatted.replace(/\s/g, "");
       if (cleaned.length >= 7) {
         debounceRef.current = setTimeout(async () => {
@@ -39,10 +33,10 @@ export default function EircodeInput({
               onLookup(data);
               setError("");
             } else {
-              setError("Eircode not found. Please fill in the address manually.");
+              setError("Eircode not found — please fill in the address manually.");
             }
           } catch {
-            setError("Could not look up Eircode. Please fill in manually.");
+            setError("Could not look up Eircode — please fill in manually.");
           } finally {
             setLoading(false);
           }
@@ -51,6 +45,8 @@ export default function EircodeInput({
     },
     [onChange, onLookup]
   );
+
+  const isValid = value.replace(/\s/g, "").length >= 7 && !error;
 
   return (
     <div className="relative">
@@ -64,15 +60,15 @@ export default function EircodeInput({
       />
       {loading && (
         <div className="absolute right-3 top-1/2 -translate-y-1/2">
-          <div className="spinner" />
+          <div className="w-4 h-4 border-2 border-gray-200 rounded-full animate-spin"
+            style={{ borderTopColor: "#ea580c" }} />
         </div>
       )}
-      {!loading && value.replace(/\s/g, "").length >= 7 && !error && (
-        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-green-400 text-sm">✓</div>
+      {!loading && isValid && (
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 text-sm font-bold"
+          style={{ color: "#ea580c" }}>✓</div>
       )}
-      {error && (
-        <p className="text-amber-400 text-xs mt-1">{error}</p>
-      )}
+      {error && <p className="text-amber-600 text-xs mt-1">{error}</p>}
     </div>
   );
 }
