@@ -1,0 +1,55 @@
+{
+  "_comment": "Step configuration – controls order and labels. Reorder steps by changing the array order.",
+  "steps": [
+    {
+      "id": "move_type",
+      "component": "Step1MoveType",
+      "title": "What type of move is it?",
+      "enabled": true
+    },
+    {
+      "id": "property_size",
+      "component": "Step2PropertySize",
+      "title": "Approximate property size",
+      "enabled": true
+    },
+    {
+      "id": "quantity",
+      "component": "Step3Quantity",
+      "title": "Rough moving quantity",
+      "enabled": true
+    },
+    {
+      "id": "moving_from",
+      "component": "Step4MovingFrom",
+      "title": "Moving from",
+      "enabled": true
+    },
+    {
+      "id": "moving_to",
+      "component": "Step5MovingTo",
+      "title": "Moving to",
+      "enabled": true
+    },
+    {
+      "id": "ready_status",
+      "component": "Step6ReadyStatus",
+      "title": "How ready is the move?",
+      "enabled": true
+    },
+    {
+      "id": "contact",
+      "component": "Step7ContactDetails",
+      "title": "Your contact details",
+      "enabled": true
+    }
+  ],
+  "whatsapp": {
+    "number": "353861234567",
+    "note": "Update NEXT_PUBLIC_WHATSAPP_NUMBER in .env.local"
+  },
+  "email": {
+    "to": "quotes@wedotravels.ie",
+    "note": "Configure SMTP or Resend in .env.local"
+  }
+}
