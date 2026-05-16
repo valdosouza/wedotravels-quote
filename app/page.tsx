@@ -3,78 +3,158 @@
 import Image from "next/image";
 import Link from "next/link";
 
+const LINKS = [
+  {
+    href: "/quote",
+    label: "Request your free Quote",
+    icon: "🚛",
+    isInternal: true,
+    highlight: true,
+  },
+  {
+    href: "https://wa.me/3530899593932",
+    label: "WhatsApp",
+    icon: null,
+    isInternal: false,
+    svgIcon: (
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+      </svg>
+    ),
+  },
+  {
+    href: "https://instagram.com/wedotravels",
+    label: "Instagram",
+    icon: null,
+    isInternal: false,
+    svgIcon: (
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+      </svg>
+    ),
+  },
+  {
+    href: "https://facebook.com/wedotravels",
+    label: "Facebook",
+    icon: null,
+    isInternal: false,
+    svgIcon: (
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+      </svg>
+    ),
+  },
+  {
+    href: "https://wedotravels.ie",
+    label: "Web Site | WeDo Travels",
+    icon: null,
+    isInternal: false,
+    svgIcon: (
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z" />
+      </svg>
+    ),
+  },
+];
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center px-4 py-12 bg-white">
-
-      {/* Orange top accent bar */}
-      <div className="fixed top-0 left-0 right-0 h-1" style={{ backgroundColor: "#ea580c" }} />
-
-      {/* Logo + brand */}
-      <div className="mb-8 flex flex-col items-center gap-3">
-        <div className="w-20 h-20 relative">
-          <Image src="/logo.png" alt="WeDo Travels Logo" fill className="object-contain" priority />
-        </div>
-        <div className="text-center">
-          <h1 className="text-3xl font-bold" style={{ color: "#ea580c" }}>WeDo Travels</h1>
-          <p className="text-gray-500 text-sm mt-1">🌍 Mobility &amp; Solutions in Dublin since 2023 🚚</p>
-        </div>
+    <main
+      className="min-h-screen flex flex-col items-center px-5 py-10"
+      style={{ backgroundColor: "#e8480a" }}
+    >
+      {/* Logo */}
+      <div className="w-24 h-24 relative mb-4 mt-4">
+        <Image
+          src="/logo.png"
+          alt="WeDo Travels"
+          fill
+          className="object-contain drop-shadow-lg"
+          priority
+        />
       </div>
 
-      {/* Hero Card */}
-      <div className="w-full max-w-md quote-card mb-6">
-        <div className="mb-6 text-center">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Get your free moving quote</h2>
-          <p className="text-gray-500 text-sm leading-relaxed">
-            Tell us <span className="text-gray-800 font-medium">roughly</span> what you&apos;re moving,
-            where it&apos;s going and your preferred date. We&apos;ll send your personalised quote on{" "}
-            <span className="font-semibold" style={{ color: "#25D366" }}>WhatsApp</span>.
-          </p>
-        </div>
+      {/* Brand name */}
+      <h1 className="text-white text-xl font-semibold mb-1 tracking-wide">
+        wedotravels
+      </h1>
+      <p className="text-white text-sm text-center mb-1" style={{ opacity: 0.92 }}>
+        🌍 WeDo Travels | Mobility &amp; solutions in Dublin since 2023! 🚚
+      </p>
 
-        {/* 3 Steps */}
-        <div className="mb-8 space-y-4">
-          <p className="text-xs font-bold tracking-widest uppercase text-gray-400">3 Simple Steps</p>
+      {/* Social icons row */}
+      <div className="flex gap-5 mt-3 mb-8">
+        <a href="https://instagram.com/wedotravels" target="_blank" rel="noopener noreferrer"
+          className="text-white transition-transform hover:scale-110">
+          <svg viewBox="0 0 24 24" fill="white" width="26" height="26">
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+          </svg>
+        </a>
+        <a href="https://wa.me/3530899593932" target="_blank" rel="noopener noreferrer"
+          className="text-white transition-transform hover:scale-110">
+          <svg viewBox="0 0 24 24" fill="white" width="26" height="26">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+          </svg>
+        </a>
+        <a href="https://facebook.com/wedotravels" target="_blank" rel="noopener noreferrer"
+          className="text-white transition-transform hover:scale-110">
+          <svg viewBox="0 0 24 24" fill="white" width="26" height="26">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
+          </svg>
+        </a>
+      </div>
 
-          {[
-            { icon: "🏠", title: "Tell us about your move", desc: "Choose the move type, add the addresses and give a rough idea of the property size and what you're moving." },
-            { icon: "👤", title: "Share your details", desc: "Add your name, phone number, email, moving date and any useful notes so we can price the move properly." },
-            { icon: "✅", title: "Confirm on WhatsApp", desc: "We send your quote, answer questions and help you arrange the move smoothly on WhatsApp." },
-          ].map(({ icon, title, desc }) => (
-            <div key={title} className="flex items-start gap-3">
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0 mt-0.5 text-lg"
-                style={{ backgroundColor: "#fff4ee", border: "1.5px solid #fbd5c0" }}>
-                {icon}
+      {/* Link buttons */}
+      <div className="w-full max-w-sm space-y-3">
+        {LINKS.map((link) => {
+          const inner = (
+            <div
+              className="w-full flex items-center px-5 py-4 rounded-full transition-all duration-150 relative"
+              style={{
+                backgroundColor: link.highlight ? "white" : "rgba(20,20,20,0.82)",
+                boxShadow: link.highlight
+                  ? "0 4px 20px rgba(0,0,0,0.25)"
+                  : "0 2px 8px rgba(0,0,0,0.2)",
+              }}
+            >
+              {/* Icon on the left */}
+              <div className="w-9 h-9 rounded-full flex items-center justify-center flex-shrink-0"
+                style={{
+                  backgroundColor: link.highlight ? "#e8480a" : "rgba(255,255,255,0.12)",
+                }}>
+                {link.highlight
+                  ? <span className="text-white text-base">{link.icon}</span>
+                  : link.svgIcon}
               </div>
-              <div>
-                <p className="text-gray-800 text-sm font-semibold">{title}</p>
-                <p className="text-gray-500 text-xs mt-0.5 leading-relaxed">{desc}</p>
+
+              {/* Label centred */}
+              <span
+                className="flex-1 text-center font-semibold text-sm"
+                style={{ color: link.highlight ? "#e8480a" : "white" }}
+              >
+                {link.label}
+              </span>
+
+              {/* Trailing dots placeholder */}
+              <div className="w-9 flex justify-end">
+                <span style={{ color: link.highlight ? "#e8480a" : "rgba(255,255,255,0.4)", fontSize: 18 }}>
+                  ⋮
+                </span>
               </div>
             </div>
-          ))}
-        </div>
+          );
 
-        <Link href="/quote" className="btn-primary">
-          Start my quote →
-        </Link>
-        <p className="text-xs text-gray-400 mt-4 text-center">
-          No card required. We only use your details to contact you about this move.
-        </p>
-      </div>
-
-      {/* Social */}
-      <div className="flex gap-3">
-        {[
-          { href: "https://wa.me/353861234567", bg: "#25D366", icon: <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" /> },
-          { href: "https://instagram.com/wedotravels", bg: "linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888)", icon: <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /> },
-          { href: "https://facebook.com/wedotravels", bg: "#1877F2", icon: <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" /> },
-        ].map(({ href, bg, icon }) => (
-          <a key={href} href={href} target="_blank" rel="noopener noreferrer"
-            className="w-10 h-10 rounded-full flex items-center justify-center text-white transition-all hover:scale-110 hover:shadow-md"
-            style={{ background: bg }}>
-            <svg viewBox="0 0 24 24" fill="currentColor" width="17" height="17">{icon}</svg>
-          </a>
-        ))}
+          return link.isInternal ? (
+            <Link key={link.label} href={link.href} className="block hover:scale-[1.02] transition-transform">
+              {inner}
+            </Link>
+          ) : (
+            <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer"
+              className="block hover:scale-[1.02] transition-transform">
+              {inner}
+            </a>
+          );
+        })}
       </div>
     </main>
   );
